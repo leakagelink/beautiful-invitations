@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CreationsRouteImport } from './routes/creations'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as EditorIdRouteImport } from './routes/editor.$id'
+import { Route as OccasionsSlugRouteImport } from './routes/occasions.$slug'
+import { Route as TemplatesIdRouteImport } from './routes/templates.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreationsRoute = CreationsRouteImport.update({
+  id: '/creations',
+  path: '/creations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorIdRoute = EditorIdRouteImport.update({
+  id: '/editor/$id',
+  path: '/editor/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OccasionsSlugRoute = OccasionsSlugRouteImport.update({
+  id: '/occasions/$slug',
+  path: '/occasions/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesIdRoute = TemplatesIdRouteImport.update({
+  id: '/templates/$id',
+  path: '/templates/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/creations': typeof CreationsRoute
+  '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/editor/$id': typeof EditorIdRoute
+  '/occasions/$slug': typeof OccasionsSlugRoute
+  '/templates/$id': typeof TemplatesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/creations': typeof CreationsRoute
+  '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/editor/$id': typeof EditorIdRoute
+  '/occasions/$slug': typeof OccasionsSlugRoute
+  '/templates/$id': typeof TemplatesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/creations': typeof CreationsRoute
+  '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/editor/$id': typeof EditorIdRoute
+  '/occasions/$slug': typeof OccasionsSlugRoute
+  '/templates/$id': typeof TemplatesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/creations'
+    | '/profile'
+    | '/search'
+    | '/editor/$id'
+    | '/occasions/$slug'
+    | '/templates/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/creations'
+    | '/profile'
+    | '/search'
+    | '/editor/$id'
+    | '/occasions/$slug'
+    | '/templates/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/creations'
+    | '/profile'
+    | '/search'
+    | '/editor/$id'
+    | '/occasions/$slug'
+    | '/templates/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CreationsRoute: typeof CreationsRoute
+  ProfileRoute: typeof ProfileRoute
+  SearchRoute: typeof SearchRoute
+  EditorIdRoute: typeof EditorIdRoute
+  OccasionsSlugRoute: typeof OccasionsSlugRoute
+  TemplatesIdRoute: typeof TemplatesIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/creations': {
+      id: '/creations'
+      path: '/creations'
+      fullPath: '/creations'
+      preLoaderRoute: typeof CreationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editor/$id': {
+      id: '/editor/$id'
+      path: '/editor/$id'
+      fullPath: '/editor/$id'
+      preLoaderRoute: typeof EditorIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/occasions/$slug': {
+      id: '/occasions/$slug'
+      path: '/occasions/$slug'
+      fullPath: '/occasions/$slug'
+      preLoaderRoute: typeof OccasionsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates/$id': {
+      id: '/templates/$id'
+      path: '/templates/$id'
+      fullPath: '/templates/$id'
+      preLoaderRoute: typeof TemplatesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CreationsRoute: CreationsRoute,
+  ProfileRoute: ProfileRoute,
+  SearchRoute: SearchRoute,
+  EditorIdRoute: EditorIdRoute,
+  OccasionsSlugRoute: OccasionsSlugRoute,
+  TemplatesIdRoute: TemplatesIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

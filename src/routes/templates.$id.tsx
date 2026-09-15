@@ -28,7 +28,7 @@ export const Route = createFileRoute("/templates/$id")({
     if (!templateById(params.id)) throw notFound();
     return null;
   },
-  component: TemplateDetail;
+  component: TemplateDetail,
 });
 
 function TemplateDetail() {
@@ -65,6 +65,7 @@ function TemplateDetail() {
         <Link
           to="/editor/$id"
           params={{ id: template.id }}
+          search={{}}
           className="btn-gold mt-5 flex h-14 items-center justify-center rounded-full text-base"
         >
           {t("customise")}
