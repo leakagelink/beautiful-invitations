@@ -41,8 +41,8 @@ function OccasionPage() {
           {occasion?.count ?? list.length} {t("designs")}
         </p>
         <div className="mt-4 grid grid-cols-2 gap-3">
-          {list.map((tpl) => (
-            <TemplateCard key={tpl.id} template={tpl} />
+          {list.map((tpl, i) => (
+            <TemplateCard key={tpl.id} template={tpl} index={i} />
           ))}
         </div>
         {list.length === 0 ? (
