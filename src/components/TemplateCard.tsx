@@ -37,7 +37,7 @@ export function TemplateCard({
           {template.photo ? "1 photo" : "No photos"}
         </span>
         {template.video ? (
-          <span className="anim-twinkle flex items-center gap-1 rounded-full bg-primary/90 px-2 py-1 text-[10px] font-bold text-primary-foreground">
+          <span className="anim-glow flex items-center gap-1 rounded-full bg-primary/90 px-2 py-1 text-[10px] font-bold text-primary-foreground">
             <Video className="size-3" /> {t("free")}
           </span>
         ) : null}
