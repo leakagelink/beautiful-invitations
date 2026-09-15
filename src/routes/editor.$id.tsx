@@ -10,9 +10,8 @@ import { templateById } from "@/lib/templates";
 import { downloadBlob, renderVideo, shareFile } from "@/lib/video";
 
 export const Route = createFileRoute("/editor/$id")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    c: typeof search.c === "string" ? search.c : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { c?: string } =>
+    typeof search["c"] === "string" ? { c: search["c"] } : {},
   loader: ({ params }) => {
     if (!templateById(params.id)) throw notFound();
     return null;
@@ -88,6 +87,7 @@ function Editor() {
   );
 
   if (!template) return null;
+  const tpl = template;
 
   const update = (key: keyof InviteFields) => (value: string) =>
     setFields((prev) => ({ ...prev, [key]: value }));
@@ -102,9 +102,9 @@ function Editor() {
       canvas.height = CANVAS_H;
       const ctx = canvas.getContext("2d");
       if (!ctx) throw new Error("Canvas unavailable");
-      const bg = await loadImage(template.bg);
+      const bg = await loadImage(tpl.bg);
       const photoImg = photo ? await loadImage(photo) : null;
-      drawInvite(ctx, { bg, photo: photoImg, template, fields, progress: 1 });
+      drawInvite(ctx, { bg, photo: photoImg, template: tpl, fields, progress: 1 });
       const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, "image/jpeg", 0.94));
       if (blob) {
         const file = new File([blob], `invitation.jpg`, { type: "image/jpeg" });
@@ -124,10 +124,10 @@ function Editor() {
     setVideo(null);
     try {
       await ensureFonts();
-      const bg = await loadImage(template.bg);
+      const bg = await loadImage(tpl.bg);
       const photoImg = photo ? await loadImage(photo) : null;
       const result = await renderVideo(
-        { bg, photo: photoImg, template, fields },
+        { bg, photo: photoImg, template: tpl, fields },
         { seconds, musicUrl },
       );
       setVideo({ url: result.url, blob: result.blob, ext: result.ext });
@@ -140,7 +140,7 @@ function Editor() {
   }
 
   function save() {
-    saveCreation({ id: creationId, templateId: template!.id, fields, photo });
+    saveCreation({ id: creationId, templateId: tpl.id, fields, photo });
     setStatus(t("saved"));
   }
 
