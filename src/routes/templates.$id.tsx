@@ -45,9 +45,9 @@ function TemplateDetail() {
       <main className="px-4 pt-4">
         <InvitePreview template={template} fields={fields} animateKey={lang} />
 
-        <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
+        <div className="anim-rise mt-4 flex flex-wrap gap-2 text-xs font-semibold" style={{ animationDelay: "120ms" }}>
           {template.video ? (
-            <span className="btn-ghost-line flex items-center gap-1.5 rounded-full px-3 py-1.5">
+            <span className="btn-ghost-line press flex items-center gap-1.5 rounded-full px-3 py-1.5">
               <Video className="size-3.5 text-primary" /> Video
             </span>
           ) : null}
@@ -66,7 +66,8 @@ function TemplateDetail() {
           to="/editor/$id"
           params={{ id: template.id }}
           search={{}}
-          className="btn-gold mt-5 flex h-14 items-center justify-center rounded-full text-base"
+          className="btn-gold sheen anim-rise press mt-5 flex h-14 items-center justify-center rounded-full text-base"
+          style={{ animationDelay: "180ms" }}
         >
           {t("customise")}
         </Link>
@@ -77,8 +78,8 @@ function TemplateDetail() {
               {pick({ en: "More like this", te: "ఇలాంటివి మరిన్ని" }, lang)}
             </h2>
             <div className="no-scrollbar -mx-4 mt-3 flex gap-3 overflow-x-auto px-4 pb-1">
-              {related.map((tpl) => (
-                <TemplateCard key={tpl.id} template={tpl} wide />
+              {related.map((tpl, i) => (
+                <TemplateCard key={tpl.id} template={tpl} wide index={i} />
               ))}
             </div>
           </section>

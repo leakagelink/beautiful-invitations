@@ -37,8 +37,8 @@ export function TopBar({ title, back }: { title?: string | undefined; back?: str
       {title ? (
         <h2 className="truncate text-lg font-semibold">{title}</h2>
       ) : (
-        <Link to="/" className="font-display text-xl font-bold tracking-tight">
-          <span className="text-gilded">Utsav</span>
+        <Link to="/" className="press font-display text-xl font-bold tracking-tight">
+          <span className="text-gilded-shimmer">Utsav</span>
           <span className="text-foreground">Invites</span>
         </Link>
       )}
@@ -74,10 +74,10 @@ export function BottomNav() {
         ))}
         <Link
           to="/search"
-          className="btn-gold -mt-6 grid size-14 place-items-center rounded-full"
+          className="btn-gold anim-glow press -mt-6 grid size-14 place-items-center rounded-full"
           aria-label={t("create")}
         >
-          <Plus className="size-7" strokeWidth={2.5} />
+          <Plus className="size-7 transition-transform duration-300 hover:rotate-90" strokeWidth={2.5} />
         </Link>
         {navItems.slice(2).map((item) => (
           <NavLink
@@ -107,12 +107,19 @@ function NavLink({
   return (
     <Link
       to={to}
-      className={`flex w-16 flex-col items-center gap-1 text-[11px] font-medium transition-colors ${
+      className={`press flex w-16 flex-col items-center gap-1 text-[11px] font-medium transition-colors ${
         active ? "text-primary" : "text-muted-foreground"
       }`}
     >
-      <Icon className="size-5" />
+      <Icon
+        className={`size-5 transition-transform duration-300 ${active ? "-translate-y-0.5 scale-110" : ""}`}
+      />
       <span className="truncate">{label}</span>
+      <span
+        className={`h-1 w-1 rounded-full bg-primary transition-opacity duration-300 ${
+          active ? "opacity-100" : "opacity-0"
+        }`}
+      />
     </Link>
   );
 }
@@ -127,9 +134,19 @@ export function AppShell({
   back?: string | undefined;
 }) {
   return (
-    <div className="mx-auto min-h-screen max-w-lg pb-28">
+    <div className="relative mx-auto min-h-screen max-w-lg pb-28">
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-x-0 top-0 -z-10 h-72 opacity-70"
+        style={{
+          background:
+            "radial-gradient(120% 80% at 50% -20%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%)",
+        }}
+      />
       <TopBar title={title} back={back} />
-      {children}
+      <div key={useRouterState({ select: (s) => s.location.pathname })} className="anim-soft">
+        {children}
+      </div>
       <BottomNav />
     </div>
   );

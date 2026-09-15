@@ -42,25 +42,32 @@ function Explore() {
     <AppShell>
       <main className="px-4">
         <section className="pt-4">
-          <h1 className="font-display text-3xl font-bold leading-tight">
+          <h1 className="anim-rise font-display text-3xl font-bold leading-tight">
             {t("browseByOccasion")}
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">{t("browseSub")}</p>
+          <p
+            className="anim-rise mt-1 text-sm text-muted-foreground"
+            style={{ animationDelay: "80ms" }}
+          >
+            {t("browseSub")}
+          </p>
 
           <div className="mt-4 grid grid-cols-2 gap-3">
-            {occasions.map((o) => {
+            {occasions.map((o, i) => {
               const Icon = icons[o.icon];
               return (
                 <Link
                   key={o.slug}
                   to="/occasions/$slug"
                   params={{ slug: o.slug }}
-                  className="relative overflow-hidden rounded-2xl border border-border/70 p-4 transition-transform active:scale-[0.98]"
+                  className="group anim-rise lift press relative overflow-hidden rounded-2xl border border-border/70 p-4"
                   style={{
                     background: `linear-gradient(150deg, ${o.tint}, color-mix(in oklab, ${o.tint} 45%, var(--card)))`,
+                    animationDelay: `${120 + i * 70}ms`,
                   }}
                 >
-                  <Icon className="size-6 text-primary" />
+                  <span className="pointer-events-none absolute -right-6 -top-6 size-20 rounded-full bg-primary/10 blur-xl transition-opacity duration-500 group-hover:opacity-100 md:opacity-0" />
+                  <Icon className="size-6 text-primary transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110" />
                   <p className="mt-6 font-semibold leading-tight">{pick(o.name, lang)}</p>
                   <p className="text-xs text-muted-foreground">
                     {o.count} {t("designs")}
@@ -80,12 +87,12 @@ function Explore() {
         />
 
         <section className="mt-8">
-          <h2 className="font-display text-xl font-bold">
+          <h2 className="anim-rise font-display text-xl font-bold">
             {pick({ en: "Wedding favourites", te: "వివాహ డిజైన్లు" }, lang)}
           </h2>
           <div className="mt-3 grid grid-cols-2 gap-3">
-            {templatesFor("wedding").map((tpl) => (
-              <TemplateCard key={tpl.id} template={tpl} />
+            {templatesFor("wedding").map((tpl, i) => (
+              <TemplateCard key={tpl.id} template={tpl} index={i} />
             ))}
           </div>
         </section>
@@ -108,18 +115,19 @@ function Rail({
   return (
     <section className="mt-8">
       <div className="flex items-center justify-between">
-        <h2 className="font-display text-xl font-bold">{title}</h2>
+        <h2 className="anim-rise font-display text-xl font-bold">{title}</h2>
         <Link
           to="/occasions/$slug"
           params={{ slug }}
-          className="flex items-center gap-0.5 text-sm font-semibold text-primary"
+          className="group press flex items-center gap-0.5 text-sm font-semibold text-primary"
         >
-          {t("viewAll")} <ChevronRight className="size-4" />
+          {t("viewAll")}{" "}
+          <ChevronRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
         </Link>
       </div>
       <div className="no-scrollbar -mx-4 mt-3 flex gap-3 overflow-x-auto px-4 pb-1">
-        {items.map((tpl) => (
-          <TemplateCard key={tpl.id} template={tpl} wide />
+        {items.map((tpl, i) => (
+          <TemplateCard key={tpl.id} template={tpl} wide index={i} />
         ))}
       </div>
     </section>
