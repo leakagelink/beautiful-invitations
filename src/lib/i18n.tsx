@@ -71,7 +71,11 @@ export const strings: Dict = {
 };
 
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (k: keyof typeof strings) => string };
-const LangContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: (k) => strings[k].en });
+const LangContext = createContext<Ctx>({
+  lang: "en",
+  setLang: () => {},
+  t: (k) => strings[k]?.en ?? String(k),
+});
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
