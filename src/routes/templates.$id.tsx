@@ -28,7 +28,7 @@ export const Route = createFileRoute("/templates/$id")({
     if (!templateById(params.id)) throw notFound();
     return null;
   },
-  component: TemplateDetail;
+  component: TemplateDetail,
 });
 
 function TemplateDetail() {
