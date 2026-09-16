@@ -39,7 +39,14 @@ export function TopBar({ title, back }: { title?: string | undefined; back?: str
         <h2 className="truncate text-lg font-semibold">{title}</h2>
       ) : (
         <Link to="/" className="press flex items-center gap-2 font-display text-xl font-bold tracking-tight">
-          <img src={logo} alt="My Invitation logo" className="size-7" />
+          <img
+            src={logo}
+            alt="My Invitation logo"
+            width={28}
+            height={28}
+            decoding="async"
+            className="size-7"
+          />
           <span>
             <span className="text-gilded-shimmer">My</span>
             <span className="text-foreground"> Invitation</span>

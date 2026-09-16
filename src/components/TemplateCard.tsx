@@ -25,10 +25,12 @@ export function TemplateCard({
       <img
         src={template.bg}
         alt={pick(template.name, lang)}
-        loading="lazy"
+        loading={index < 4 ? "eager" : "lazy"}
+        decoding="async"
+        fetchPriority={index < 2 ? "high" : "auto"}
         width={768}
         height={1024}
-        className="aspect-[3/4] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"
+        className="aspect-[3/4] w-full bg-muted object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"
       />
       <span className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/12 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-2">
