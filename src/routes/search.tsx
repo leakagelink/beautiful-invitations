@@ -53,7 +53,7 @@ function SearchPage() {
             <button
               key={o.slug}
               onClick={() => setQ(o.slug.replace("-", " "))}
-              className="btn-ghost-line shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold"
+              className="btn-ghost-line press shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold"
             >
               {o.name.en}
             </button>

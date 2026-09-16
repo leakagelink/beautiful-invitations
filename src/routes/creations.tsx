@@ -36,7 +36,7 @@ function Creations() {
           <div className="surface-card mt-10 rounded-3xl p-8 text-center">
             <h2 className="font-display text-2xl font-bold">{t("noCreations")}</h2>
             <p className="mt-2 text-sm text-muted-foreground">{t("noCreationsSub")}</p>
-            <Link to="/" className="btn-gold mt-6 inline-flex h-12 items-center rounded-full px-6">
+            <Link to="/" className="btn-gold press mt-6 inline-flex h-12 items-center rounded-full px-6">
               {t("startNow")}
             </Link>
           </div>
@@ -64,7 +64,7 @@ function Creations() {
                     to="/editor/$id"
                     params={{ id: c.templateId }}
                     search={{ c: c.id }}
-                    className="btn-ghost-line rounded-full px-4 py-2 text-sm font-semibold"
+                    className="btn-ghost-line press rounded-full px-4 py-2 text-sm font-semibold"
                   >
                     {t("edit")}
                   </Link>

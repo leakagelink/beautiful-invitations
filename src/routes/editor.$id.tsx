@@ -158,14 +158,14 @@ function Editor() {
           <button
             onClick={exportVideo}
             disabled={busy !== null}
-            className="btn-gold flex h-12 items-center justify-center gap-2 rounded-full text-sm disabled:opacity-60"
+            className="btn-gold sheen press flex h-12 items-center justify-center gap-2 rounded-full text-sm disabled:opacity-60"
           >
             <Video className="size-4" /> {busy === "video" ? t("making") : t("makeVideo")}
           </button>
           <button
             onClick={exportImage}
             disabled={busy !== null}
-            className="btn-ghost-line flex h-12 items-center justify-center gap-2 rounded-full text-sm font-semibold disabled:opacity-60"
+            className="btn-ghost-line press flex h-12 items-center justify-center gap-2 rounded-full text-sm font-semibold disabled:opacity-60"
           >
             <Download className="size-4" /> {t("downloadImage")}
           </button>
@@ -204,13 +204,13 @@ function Editor() {
                   const shared = await shareFile(file, fields.title);
                   if (!shared) downloadBlob(video.blob, `invitation.${video.ext}`);
                 }}
-                className="btn-gold flex h-11 items-center justify-center gap-2 rounded-full text-sm"
+                className="btn-gold press flex h-11 items-center justify-center gap-2 rounded-full text-sm"
               >
                 <Share2 className="size-4" /> {t("share")}
               </button>
               <button
                 onClick={() => downloadBlob(video.blob, `invitation.${video.ext}`)}
-                className="btn-ghost-line flex h-11 items-center justify-center rounded-full text-sm font-semibold"
+                className="btn-ghost-line press flex h-11 items-center justify-center rounded-full text-sm font-semibold"
               >
                 {t("download")}
               </button>
@@ -293,14 +293,14 @@ function Editor() {
               <div className="flex gap-2">
                 <button
                   onClick={() => photoInput.current?.click()}
-                  className="btn-gold h-11 flex-1 rounded-full text-sm"
+                  className="btn-gold press h-11 flex-1 rounded-full text-sm"
                 >
                   {t("addPhoto")}
                 </button>
                 {photo ? (
                   <button
                     onClick={() => setPhoto(null)}
-                    className="btn-ghost-line h-11 flex-1 rounded-full text-sm font-semibold"
+                    className="btn-ghost-line press h-11 flex-1 rounded-full text-sm font-semibold"
                   >
                     {t("removePhoto")}
                   </button>
@@ -333,7 +333,7 @@ function Editor() {
               <div className="flex gap-2">
                 <button
                   onClick={() => musicInput.current?.click()}
-                  className="btn-gold h-11 flex-1 rounded-full text-sm"
+                  className="btn-gold press h-11 flex-1 rounded-full text-sm"
                 >
                   {t("addMusic")}
                 </button>
@@ -343,7 +343,7 @@ function Editor() {
                       setMusicUrl(null);
                       setMusicName(null);
                     }}
-                    className="btn-ghost-line h-11 flex-1 rounded-full text-sm font-semibold"
+                    className="btn-ghost-line press h-11 flex-1 rounded-full text-sm font-semibold"
                   >
                     {t("removeMusic")}
                   </button>
@@ -355,7 +355,7 @@ function Editor() {
 
         <button
           onClick={save}
-          className="btn-ghost-line mt-4 h-12 w-full rounded-full text-sm font-semibold"
+          className="btn-ghost-line press mt-4 h-12 w-full rounded-full text-sm font-semibold"
         >
           {t("saveInvite")}
         </button>
