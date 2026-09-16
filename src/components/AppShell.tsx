@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Compass, Layers, Plus, Search, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { useLang } from "@/lib/i18n";
+import logo from "@/assets/logo.png";
 
 function LangToggle() {
   const { lang, setLang } = useLang();
@@ -37,9 +38,12 @@ export function TopBar({ title, back }: { title?: string | undefined; back?: str
       {title ? (
         <h2 className="truncate text-lg font-semibold">{title}</h2>
       ) : (
-        <Link to="/" className="press font-display text-xl font-bold tracking-tight">
-          <span className="text-gilded-shimmer">Utsav</span>
-          <span className="text-foreground">Invites</span>
+        <Link to="/" className="press flex items-center gap-2 font-display text-xl font-bold tracking-tight">
+          <img src={logo} alt="My Invitation logo" className="size-7" />
+          <span>
+            <span className="text-gilded-shimmer">My</span>
+            <span className="text-foreground"> Invitation</span>
+          </span>
         </Link>
       )}
       <div className="ml-auto">

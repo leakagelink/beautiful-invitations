@@ -8,13 +8,9 @@ import { occasions, templates, templatesFor, type Occasion } from "@/lib/templat
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "UtsavInvites — Wedding & Birthday Invitation Maker" },
-      {
-        name: "description",
-        content:
-          "Make Telugu and English invitation cards and invitation videos in minutes. Add your photo, your text and your song, then share on WhatsApp.",
-      },
-      { property: "og:title", content: "UtsavInvites — Invitation Maker" },
+      { title: "My Invitation — Wedding & Birthday Invitation Maker" },
+{ name: "description", content: "Beautiful wedding, birthday and festival invitation cards and videos. Telugu supported." },
+      { property: "og:title", content: "My Invitation — Invitation Maker" },
       {
         property: "og:description",
         content: "Beautiful wedding, birthday and festival invitation cards and videos. Telugu supported.",
