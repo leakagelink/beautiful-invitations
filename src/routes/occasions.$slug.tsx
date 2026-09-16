@@ -10,7 +10,7 @@ export const Route = createFileRoute("/occasions/$slug")({
     const name = occasion?.name.en ?? "Invitation";
     return {
       meta: [
-        { title: `${name} invitation templates — UtsavInvites` },
+        { title: `${name} invitation templates — My Invitation` },
         {
           name: "description",
           content: `Browse ${name.toLowerCase()} invitation cards and video templates. Add photos, your own text in Telugu or English, and a song.`,

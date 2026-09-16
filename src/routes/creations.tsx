@@ -9,7 +9,7 @@ import { templateById } from "@/lib/templates";
 export const Route = createFileRoute("/creations")({
   head: () => ({
     meta: [
-      { title: "My invitations — UtsavInvites" },
+      { title: "My invitations — My Invitation" },
       {
         name: "description",
         content: "Every invitation you have made, saved on this device and ready to edit or share again.",

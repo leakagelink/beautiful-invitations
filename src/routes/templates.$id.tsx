@@ -12,7 +12,7 @@ export const Route = createFileRoute("/templates/$id")({
     const name = tpl ? tpl.name.en : "Invitation template";
     return {
       meta: [
-        { title: `${name} — UtsavInvites` },
+        { title: `${name} — My Invitation` },
         {
           name: "description",
           content: `Customise the ${name} invitation: your names, date, venue, photo and music. Export as a card or a video.`,

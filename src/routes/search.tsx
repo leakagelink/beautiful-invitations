@@ -9,7 +9,7 @@ import { occasions, templates } from "@/lib/templates";
 export const Route = createFileRoute("/search")({
   head: () => ({
     meta: [
-      { title: "Search invitation designs — UtsavInvites" },
+      { title: "Search invitation designs — My Invitation" },
       {
         name: "description",
         content: "Search invitation templates by occasion, style or language, in Telugu or English.",

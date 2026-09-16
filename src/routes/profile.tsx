@@ -6,13 +6,9 @@ import { pick, useLang } from "@/lib/i18n";
 export const Route = createFileRoute("/profile")({
   head: () => ({
     meta: [
-      { title: "Profile & settings — UtsavInvites" },
-      {
-        name: "description",
-        content: "Change the app language between Telugu and English and read how your invitations are stored.",
-      },
-      { property: "og:title", content: "Profile & settings" },
-      { property: "og:description", content: "Language and app settings for UtsavInvites." },
+      { title: "Profile & settings — My Invitation" },
+...
+      { property: "og:description", content: "Language and app settings for My Invitation." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

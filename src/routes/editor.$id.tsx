@@ -21,7 +21,7 @@ export const Route = createFileRoute("/editor/$id")({
     const name = tpl ? tpl.name.en : "Invitation";
     return {
       meta: [
-        { title: `Customise ${name} — UtsavInvites` },
+        { title: `Customise ${name} — My Invitation` },
         {
           name: "description",
           content: `Add your names, date, venue, photo and song to the ${name} invitation, then export a card or video.`,
