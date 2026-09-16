@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "My Invitation — Wedding & Birthday Invitation Maker" },
-...
+{ name: "description", content: "Beautiful wedding, birthday and festival invitation cards and videos. Telugu supported." },
       { property: "og:title", content: "My Invitation — Invitation Maker" },
       {
         property: "og:description",

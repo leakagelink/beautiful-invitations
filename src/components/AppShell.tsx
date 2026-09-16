@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Compass, Layers, Plus, Search, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { useLang } from "@/lib/i18n";
+import logo from "@/assets/logo.png";
 
 function LangToggle() {
   const { lang, setLang } = useLang();

@@ -7,7 +7,7 @@ export const Route = createFileRoute("/profile")({
   head: () => ({
     meta: [
       { title: "Profile & settings — My Invitation" },
-...
+{ property: "og:title", content: "Profile & settings — My Invitation" },
       { property: "og:description", content: "Language and app settings for My Invitation." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
