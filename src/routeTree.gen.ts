@@ -11,9 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreationsRouteImport } from './routes/creations'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as EditorIdRouteImport } from './routes/editor.$id'
 import { Route as OccasionsSlugRouteImport } from './routes/occasions.$slug'
 import { Route as TemplatesIdRouteImport } from './routes/templates.$id'
@@ -28,9 +31,19 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreationsRoute = CreationsRouteImport.update({
   id: '/creations',
   path: '/creations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -41,6 +54,11 @@ const ProfileRoute = ProfileRouteImport.update({
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EditorIdRoute = EditorIdRouteImport.update({
@@ -62,9 +80,12 @@ const TemplatesIdRoute = TemplatesIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/contact': typeof ContactRoute
   '/creations': typeof CreationsRoute
+  '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
+  '/terms': typeof TermsRoute
   '/editor/$id': typeof EditorIdRoute
   '/occasions/$slug': typeof OccasionsSlugRoute
   '/templates/$id': typeof TemplatesIdRoute
@@ -72,9 +93,12 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/contact': typeof ContactRoute
   '/creations': typeof CreationsRoute
+  '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
+  '/terms': typeof TermsRoute
   '/editor/$id': typeof EditorIdRoute
   '/occasions/$slug': typeof OccasionsSlugRoute
   '/templates/$id': typeof TemplatesIdRoute
@@ -83,9 +107,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/contact': typeof ContactRoute
   '/creations': typeof CreationsRoute
+  '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/search': typeof SearchRoute
+  '/terms': typeof TermsRoute
   '/editor/$id': typeof EditorIdRoute
   '/occasions/$slug': typeof OccasionsSlugRoute
   '/templates/$id': typeof TemplatesIdRoute
@@ -95,9 +122,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/contact'
     | '/creations'
+    | '/privacy'
     | '/profile'
     | '/search'
+    | '/terms'
     | '/editor/$id'
     | '/occasions/$slug'
     | '/templates/$id'
@@ -105,9 +135,12 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/admin'
+    | '/contact'
     | '/creations'
+    | '/privacy'
     | '/profile'
     | '/search'
+    | '/terms'
     | '/editor/$id'
     | '/occasions/$slug'
     | '/templates/$id'
@@ -115,9 +148,12 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/contact'
     | '/creations'
+    | '/privacy'
     | '/profile'
     | '/search'
+    | '/terms'
     | '/editor/$id'
     | '/occasions/$slug'
     | '/templates/$id'
@@ -126,9 +162,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  ContactRoute: typeof ContactRoute
   CreationsRoute: typeof CreationsRoute
+  PrivacyRoute: typeof PrivacyRoute
   ProfileRoute: typeof ProfileRoute
   SearchRoute: typeof SearchRoute
+  TermsRoute: typeof TermsRoute
   EditorIdRoute: typeof EditorIdRoute
   OccasionsSlugRoute: typeof OccasionsSlugRoute
   TemplatesIdRoute: typeof TemplatesIdRoute
@@ -150,11 +189,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/creations': {
       id: '/creations'
       path: '/creations'
       fullPath: '/creations'
       preLoaderRoute: typeof CreationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -169,6 +222,13 @@ declare module '@tanstack/react-router' {
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/editor/$id': {
@@ -198,9 +258,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  ContactRoute: ContactRoute,
   CreationsRoute: CreationsRoute,
+  PrivacyRoute: PrivacyRoute,
   ProfileRoute: ProfileRoute,
   SearchRoute: SearchRoute,
+  TermsRoute: TermsRoute,
   EditorIdRoute: EditorIdRoute,
   OccasionsSlugRoute: OccasionsSlugRoute,
   TemplatesIdRoute: TemplatesIdRoute,

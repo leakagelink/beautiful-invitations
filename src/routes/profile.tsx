@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Globe2, HeartHandshake, Info, ShieldCheck, Wrench } from "lucide-react";
+import { FileText, Globe2, HeartHandshake, Headset, Info, LogOut, ShieldCheck, Wrench } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { pick, useLang } from "@/lib/i18n";
 
@@ -48,6 +48,36 @@ function Profile() {
           <Wrench className="size-4 text-primary" />
           {pick({ en: "Admin panel — add or delete templates", te: "అడ్మిన్ ప్యానెల్ — టెంప్లేట్లు జోడించు / తొలగించు" }, lang)}
         </Link>
+
+        <div className="grid grid-cols-1 gap-2">
+          <Link
+            to="/privacy"
+            className="surface-card press flex items-center gap-3 rounded-2xl p-5 text-sm font-semibold"
+          >
+            <ShieldCheck className="size-4 text-primary" /> {t("privacy")}
+          </Link>
+          <Link
+            to="/terms"
+            className="surface-card press flex items-center gap-3 rounded-2xl p-5 text-sm font-semibold"
+          >
+            <FileText className="size-4 text-primary" /> {t("terms")}
+          </Link>
+          <Link
+            to="/contact"
+            className="surface-card press flex items-center gap-3 rounded-2xl p-5 text-sm font-semibold"
+          >
+            <Headset className="size-4 text-primary" /> {t("contact")} · {t("support")}
+          </Link>
+        </div>
+
+        <button
+          type="button"
+          disabled
+          title={t("comingSoon")}
+          className="flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-2xl border border-border bg-card p-4 text-sm font-semibold text-muted-foreground opacity-70"
+        >
+          <LogOut className="size-4" /> {t("logout")} · {t("comingSoon")}
+        </button>
 
         {[
           {
