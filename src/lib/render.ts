@@ -78,6 +78,28 @@ function centerText(
 const DISPLAY = `"Fraunces", "Noto Serif Telugu", Georgia, serif`;
 const BODY = `"Manrope", "Noto Sans Telugu", system-ui, sans-serif`;
 
+/** Finds the biggest font size that keeps the text within maxWidth and maxLines. */
+function fitFontSize(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  maxWidth: number,
+  base: number,
+  min: number,
+  maxLines: number,
+  family: string,
+  weight: number,
+) {
+  const original = ctx.font;
+  let size = base;
+  while (size > min) {
+    ctx.font = `${weight} ${size}px ${family}`;
+    if (wrap(ctx, text, maxWidth).length <= maxLines) break;
+    size -= 2;
+  }
+  ctx.font = original;
+  return size;
+}
+
 /** Draws one frame of the invitation. Shared by the live preview, PNG export and video export. */
 export function drawInvite(ctx: CanvasRenderingContext2D, input: DrawInput) {
   const p = input.progress ?? 1;
@@ -131,11 +153,12 @@ export function drawInvite(ctx: CanvasRenderingContext2D, input: DrawInput) {
   ctx.font = `500 26px ${BODY}`;
   y = centerText(ctx, fields.subtitle, y, CANVAS_W - 200, 36) + 18;
 
-  // Title
+  // Title — long names automatically shrink so they never spill out of the card
   ctx.globalAlpha = stage(p, 0.28, 0.22);
   ctx.fillStyle = template.ink;
-  ctx.font = `700 64px ${DISPLAY}`;
-  y = centerText(ctx, fields.title, y, CANVAS_W - 150, 78) + 26;
+  const titleSize = fitFontSize(ctx, fields.title, CANVAS_W - 150, 64, 32, 2, DISPLAY, 700);
+  ctx.font = `700 ${titleSize}px ${DISPLAY}`;
+  y = centerText(ctx, fields.title, y, CANVAS_W - 150, Math.round(titleSize * 1.22)) + 26;
 
   // Divider
   ctx.globalAlpha = stage(p, 0.45);

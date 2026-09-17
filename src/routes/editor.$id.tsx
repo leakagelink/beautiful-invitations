@@ -7,13 +7,15 @@ import { saveCreation, getCreation, type InviteFields } from "@/lib/creations";
 import { pick, useLang } from "@/lib/i18n";
 import { CANVAS_H, CANVAS_W, drawInvite, ensureFonts, loadImage } from "@/lib/render";
 import { templateById } from "@/lib/templates";
+import { useTemplate } from "@/hooks/useTemplates";
+import { isCustomId } from "@/lib/customTemplates";
 import { downloadBlob, renderVideo, shareFile } from "@/lib/video";
 
 export const Route = createFileRoute("/editor/$id")({
   validateSearch: (search: Record<string, unknown>): { c?: string } =>
     typeof search["c"] === "string" ? { c: search["c"] } : {},
   loader: ({ params }) => {
-    if (!templateById(params.id)) throw notFound();
+    if (!isCustomId(params.id) && !templateById(params.id)) throw notFound();
     return null;
   },
   head: ({ params }) => {
@@ -42,7 +44,7 @@ function Editor() {
   const { id } = Route.useParams();
   const { c } = Route.useSearch();
   const { lang, t } = useLang();
-  const template = templateById(id);
+  const template = useTemplate(id);
 
   const [fields, setFields] = useState<InviteFields>(
     () => (lang === "te" ? template?.fieldsTe : template?.fields) ?? {
@@ -57,7 +59,7 @@ function Editor() {
   const [musicUrl, setMusicUrl] = useState<string | null>(null);
   const [musicName, setMusicName] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>("text");
-  const [seconds, setSeconds] = useState(8);
+  const [seconds, setSeconds] = useState(60);
   const [busy, setBusy] = useState<null | "video" | "image">(null);
   const [status, setStatus] = useState<string | null>(null);
   const [video, setVideo] = useState<{ url: string; blob: Blob; ext: string } | null>(null);
@@ -176,7 +178,7 @@ function Editor() {
             {t("videoLen")}: {seconds} {t("seconds")}
           </span>
           <div className="flex gap-1">
-            {[6, 8, 12].map((s) => (
+            {[15, 30, 60].map((s) => (
               <button
                 key={s}
                 onClick={() => setSeconds(s)}
