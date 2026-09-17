@@ -25,7 +25,6 @@ export const strings: Dict = {
   videoReady: { en: "Video ready templates", te: "వీడియో టెంప్లేట్లు" },
   explore: { en: "Explore", te: "అన్వేషించు" },
   creations: { en: "Creations", te: "నా సృష్టి" },
-  create: { en: "Create", te: "సృష్టించు" },
   search: { en: "Search", te: "వెతకండి" },
   profile: { en: "Profile", te: "ప్రొఫైల్" },
   customise: { en: "Customise this design", te: "ఈ డిజైన్‌ను మార్చండి" },

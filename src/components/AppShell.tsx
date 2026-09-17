@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Compass, Layers, Plus, Search, User } from "lucide-react";
+import { Compass, Layers, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { useLang } from "@/lib/i18n";
 import logo from "@/assets/logo.png";
@@ -63,7 +63,6 @@ export function TopBar({ title, back }: { title?: string | undefined; back?: str
 const navItems = [
   { to: "/", icon: Compass, labelKey: "explore" as const },
   { to: "/creations", icon: Layers, labelKey: "creations" as const },
-  { to: "/search", icon: Search, labelKey: "search" as const },
   { to: "/profile", icon: User, labelKey: "profile" as const },
 ];
 
@@ -73,24 +72,8 @@ export function BottomNav() {
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-border/70 bg-background/95 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-lg items-end justify-between px-6 pb-3 pt-2">
-        {navItems.slice(0, 2).map((item) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            icon={item.icon}
-            active={pathname === item.to}
-            label={t(item.labelKey)}
-          />
-        ))}
-        <Link
-          to="/search"
-          className="btn-gold anim-glow press -mt-6 grid size-14 place-items-center rounded-full"
-          aria-label={t("create")}
-        >
-          <Plus className="size-7 transition-transform duration-300 hover:rotate-90" strokeWidth={2.5} />
-        </Link>
-        {navItems.slice(2).map((item) => (
+      <div className="mx-auto flex max-w-lg items-end justify-around px-6 pb-3 pt-2">
+        {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
