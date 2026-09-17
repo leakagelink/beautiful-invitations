@@ -42,6 +42,7 @@ export const strings: Dict = {
   making: { en: "Creating video…", te: "వీడియో తయారవుతోంది…" },
   share: { en: "Share", te: "షేర్ చేయండి" },
   shareWhatsapp: { en: "Share on WhatsApp", te: "వాట్సాప్‌లో షేర్" },
+  comingSoon: { en: "Coming soon", te: "త్వరలో వస్తోంది" },
   download: { en: "Download", te: "డౌన్‌లోడ్" },
   noCreations: { en: "No invitations yet", te: "ఇంకా ఆహ్వానాలు లేవు" },
   noCreationsSub: {

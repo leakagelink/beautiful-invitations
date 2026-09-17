@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Crop, Download, Music2, Share2, Type as TypeIcon, ImagePlus, Video } from "lucide-react";
+import { Crop, Download, MessageCircle, Music2, Share2, Type as TypeIcon, ImagePlus, Video } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { InvitePreview } from "@/components/InvitePreview";
 import { PhotoCropper } from "@/components/PhotoCropper";
@@ -198,6 +198,15 @@ function Editor() {
             <Download className="size-4" /> {t("downloadImage")}
           </button>
         </div>
+
+        <button
+          type="button"
+          disabled
+          title={t("comingSoon")}
+          className="mt-2 flex h-12 w-full cursor-not-allowed items-center justify-center gap-2 rounded-full border border-border bg-card text-sm font-semibold text-muted-foreground opacity-70"
+        >
+          <MessageCircle className="size-4" /> {t("shareWhatsapp")} · {t("comingSoon")}
+        </button>
 
         <div className="mt-2 flex items-center justify-between rounded-full border border-border bg-card px-4 py-2 text-sm">
           <span className="text-muted-foreground">
