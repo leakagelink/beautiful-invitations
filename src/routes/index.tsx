@@ -34,6 +34,8 @@ const icons: Record<Occasion["icon"], typeof Heart> = {
 
 function Explore() {
   const { lang, t } = useLang();
+  const all = useTemplates();
+  const weddings = useTemplates("wedding");
 
   return (
     <AppShell>
