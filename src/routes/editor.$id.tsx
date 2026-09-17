@@ -77,6 +77,8 @@ function Editor() {
   const [status, setStatus] = useState<string | null>(null);
   const [video, setVideo] = useState<{ url: string; blob: Blob; ext: string } | null>(null);
   const [creationId] = useState(() => c ?? `inv_${Date.now().toString(36)}`);
+  const [showUnlock, setShowUnlock] = useState(false);
+  const [paid, setPaid] = useState(false);
   const photoInput = useRef<HTMLInputElement | null>(null);
   const musicInput = useRef<HTMLInputElement | null>(null);
 
