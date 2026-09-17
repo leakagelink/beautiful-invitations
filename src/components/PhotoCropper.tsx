@@ -183,7 +183,7 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
     }`;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-background/95 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-background pb-20">
       <div className="flex items-center justify-between px-4 py-3">
         <button
           onClick={onCancel}
@@ -205,7 +205,11 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
         </button>
       </div>
 
-      <div ref={areaRef} className="relative mx-auto w-full max-w-[360px] flex-1 px-4 py-2">
+      <div
+        ref={areaRef}
+        className="relative mx-auto min-h-0 w-full max-w-[360px] flex-1 px-4 py-2"
+      >
+
         <div
           className="absolute left-1/2 top-1/2 touch-none overflow-hidden rounded-2xl border border-border bg-black"
           style={{
@@ -217,7 +221,9 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
             (e.target as HTMLElement).setPointerCapture(e.pointerId);
             pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
             if (pointers.current.size === 2) {
-              const [a, b] = [...pointers.current.values()];
+              const pts = [...pointers.current.values()];
+              const a = pts[0]!;
+              const b = pts[1]!;
               pinchRef.current = {
                 dist: Math.hypot(a.x - b.x, a.y - b.y) || 1,
                 zoom,
@@ -233,11 +239,14 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
             }
             const pinch = pinchRef.current;
             if (pinch && pointers.current.size >= 2) {
-              const [a, b] = [...pointers.current.values()];
+              const pts = [...pointers.current.values()];
+              const a = pts[0]!;
+              const b = pts[1]!;
               const d = Math.hypot(a.x - b.x, a.y - b.y) || 1;
               changeZoom(pinch.zoom * (d / pinch.dist));
               return;
             }
+
             const d = dragRef.current;
             if (!d) return;
             setOffset(
@@ -279,7 +288,7 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[360px] px-4 pb-8">
+      <div className="mx-auto max-h-[52vh] w-full max-w-[360px] shrink-0 overflow-y-auto px-4 pb-4 pt-1">
         {/* tabs */}
         <div className="mb-3 flex rounded-full border border-border p-1">
           <button
