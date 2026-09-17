@@ -86,6 +86,14 @@ function Editor() {
     }
   }, [c]);
 
+  // Custom (admin-added) templates load from device storage, so seed their text once ready.
+  const seeded = useRef(false);
+  useEffect(() => {
+    if (c || seeded.current || !template) return;
+    seeded.current = true;
+    setFields(lang === "te" ? template.fieldsTe : template.fields);
+  }, [c, template, lang]);
+
   const labels = useMemo(
     () => ({
       subtitle: { en: "Top line", te: "పైవరుస" },
