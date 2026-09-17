@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Crop, Download, MessageCircle, Music2, Share2, Type as TypeIcon, ImagePlus, Video } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { InvitePreview } from "@/components/InvitePreview";
@@ -352,7 +352,7 @@ function Editor() {
                   e.target.value = "";
                   if (!file) return;
                   const reader = new FileReader();
-                  reader.onload = () => setCropSrc(String(reader.result));
+                  reader.onload = () => openCrop(String(reader.result));
                   reader.readAsDataURL(file);
                 }}
               />
