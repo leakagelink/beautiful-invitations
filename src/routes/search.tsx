@@ -27,14 +27,15 @@ export const Route = createFileRoute("/search")({
 function SearchPage() {
   const { t } = useLang();
   const [q, setQ] = useState("");
+  const all = useTemplates();
 
   const results = useMemo(() => {
     const term = q.trim().toLowerCase();
-    if (!term) return templates;
-    return templates.filter((tpl) =>
+    if (!term) return all;
+    return all.filter((tpl) =>
       [tpl.name.en, tpl.name.te, tpl.occasion, ...tpl.tags].join(" ").toLowerCase().includes(term),
     );
-  }, [q]);
+  }, [q, all]);
 
   return (
     <AppShell title={t("search")} back="/">

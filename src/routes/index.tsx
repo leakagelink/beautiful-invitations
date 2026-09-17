@@ -3,7 +3,8 @@ import { ChevronRight, Gift, Heart, Home, PartyPopper, Flower2, Sparkles } from 
 import { AppShell } from "@/components/AppShell";
 import { TemplateCard } from "@/components/TemplateCard";
 import { pick, useLang } from "@/lib/i18n";
-import { occasions, templates, templatesFor, type Occasion } from "@/lib/templates";
+import { occasions, type Occasion, type Template } from "@/lib/templates";
+import { useTemplates } from "@/hooks/useTemplates";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -74,10 +75,10 @@ function Explore() {
           </div>
         </section>
 
-        <Rail title={t("trending")} items={templates.slice(0, 6)} to="/occasions/$slug" slug="wedding" />
+        <Rail title={t("trending")} items={all.slice(0, 6)} to="/occasions/$slug" slug="wedding" />
         <Rail
           title={t("videoReady")}
-          items={templates.filter((tpl) => tpl.video).slice(2)}
+          items={all.filter((tpl) => tpl.video).slice(2)}
           to="/occasions/$slug"
           slug="festivals"
         />
@@ -87,7 +88,7 @@ function Explore() {
             {pick({ en: "Wedding favourites", te: "వివాహ డిజైన్లు" }, lang)}
           </h2>
           <div className="mt-3 grid grid-cols-2 gap-3">
-            {templatesFor("wedding").map((tpl, i) => (
+            {weddings.map((tpl, i) => (
               <TemplateCard key={tpl.id} template={tpl} index={i} />
             ))}
           </div>
@@ -103,7 +104,7 @@ function Rail({
   slug,
 }: {
   title: string;
-  items: typeof templates;
+  items: Template[];
   to: string;
   slug: string;
 }) {
