@@ -67,6 +67,14 @@ export const strings: Dict = {
     en: "Your photo sits inside the gold frame of the design.",
     te: "మీ ఫోటో డిజైన్‌లోని బంగారు ఫ్రేమ్‌లో కనిపిస్తుంది.",
   },
+  editPhoto: { en: "Crop / zoom", te: "క్రాప్ / జూమ్" },
+  cropTitle: { en: "Adjust photo", te: "ఫోటో సరిచేయండి" },
+  cropHint: { en: "Drag to move • slider to zoom", te: "కదపడానికి లాగండి • జూమ్ కొరకు స్లైడర్" },
+  zoom: { en: "Zoom", te: "జూమ్" },
+  zoomIn: { en: "Zoom in", te: "జూమ్ ఇన్" },
+  zoomOut: { en: "Zoom out", te: "జూమ్ అవుట్" },
+  applyCrop: { en: "Apply", te: "వర్తింపజేయి" },
+  cancelCrop: { en: "Cancel", te: "రద్దు" },
 };
 
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (k: keyof typeof strings) => string };
