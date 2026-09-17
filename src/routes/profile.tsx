@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Globe2, HeartHandshake, Info, ShieldCheck } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Globe2, HeartHandshake, Info, ShieldCheck, Wrench } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { pick, useLang } from "@/lib/i18n";
 
@@ -40,6 +40,14 @@ function Profile() {
             ))}
           </div>
         </section>
+
+        <Link
+          to="/admin"
+          className="surface-card press flex items-center gap-3 rounded-2xl p-5 text-sm font-semibold"
+        >
+          <Wrench className="size-4 text-primary" />
+          {pick({ en: "Admin panel — add or delete templates", te: "అడ్మిన్ ప్యానెల్ — టెంప్లేట్లు జోడించు / తొలగించు" }, lang)}
+        </Link>
 
         {[
           {

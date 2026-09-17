@@ -4,7 +4,7 @@ import { Trash2 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { deleteCreation, listCreations, type Creation } from "@/lib/creations";
 import { pick, useLang } from "@/lib/i18n";
-import { templateById } from "@/lib/templates";
+import { findTemplate } from "@/lib/customTemplates";
 
 export const Route = createFileRoute("/creations")({
   head: () => ({
@@ -43,7 +43,7 @@ function Creations() {
         ) : (
           <ul className="space-y-3">
             {items.map((c) => {
-              const tpl = templateById(c.templateId);
+              const tpl = findTemplate(c.templateId);
               return (
                 <li key={c.id} className="surface-card flex items-center gap-3 rounded-2xl p-3">
                   {tpl ? (
