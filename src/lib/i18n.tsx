@@ -95,6 +95,22 @@ export const strings: Dict = {
   rotateRight: { en: "Rotate right", te: "కుడికి తిప్పు" },
   flipPhoto: { en: "Flip", te: "ఫ్లిప్" },
   resetPhoto: { en: "Reset", te: "రీసెట్" },
+  account: { en: "Account", te: "ఖాతా" },
+  signIn: { en: "Sign in", te: "లాగిన్" },
+  signUp: { en: "Sign up", te: "సైన్ అప్" },
+  yourName: { en: "Your name", te: "మీ పేరు" },
+  email: { en: "Email", te: "ఇమెయిల్" },
+  password: { en: "Password", te: "పాస్‌వర్డ్" },
+  createAccount: { en: "Create account", te: "ఖాతా సృష్టించండి" },
+  continueGoogle: { en: "Continue with Google", te: "Google తో కొనసాగండి" },
+  haveAccount: { en: "Already have an account? Sign in", te: "ఖాతా ఉందా? లాగిన్ చేయండి" },
+  noAccount: { en: "New here? Create account", te: "కొత్తవారా? ఖాతా సృష్టించండి" },
+  signInSub: {
+    en: "Sign in to keep your invitations and purchases safe on every device.",
+    te: "మీ ఆహ్వానాలు, కొనుగోళ్లు అన్ని పరికరాల్లో భద్రంగా ఉంచడానికి లాగిన్ అవ్వండి.",
+  },
+  or: { en: "or", te: "లేదా" },
+  notSignedIn: { en: "You are not signed in", te: "మీరు లాగిన్ కాలేదు" },
 };
 
 
