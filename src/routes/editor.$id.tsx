@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Download, Music2, Share2, Type as TypeIcon, ImagePlus, Video } from "lucide-react";
+import { Crop, Download, Music2, Share2, Type as TypeIcon, ImagePlus, Video } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { InvitePreview } from "@/components/InvitePreview";
 import { PhotoCropper } from "@/components/PhotoCropper";
@@ -66,6 +66,7 @@ function Editor() {
     },
   );
   const [photo, setPhoto] = useState<string | null>(null);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
   const [musicUrl, setMusicUrl] = useState<string | null>(null);
   const [musicName, setMusicName] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>("text");
