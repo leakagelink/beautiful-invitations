@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Chrome, Lock, Mail, User as UserIcon } from "lucide-react";
+import { Lock, Mail, User as UserIcon } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { useLang } from "@/lib/i18n";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -60,31 +59,10 @@ function AuthPage() {
     }
   }
 
-  async function google() {
-    setError(null);
-    const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
-    });
-    if (result.error) setError(result.error.message ?? String(result.error));
-  }
-
   return (
     <AppShell title={mode === "up" ? t("signUp") : t("signIn")} back="/profile">
       <main className="space-y-4 px-4 pt-4">
         <p className="text-sm text-muted-foreground">{t("signInSub")}</p>
-
-        <button
-          type="button"
-          onClick={google}
-          className="btn-ghost-line press flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold"
-        >
-          <Chrome className="size-4" /> {t("continueGoogle")}
-        </button>
-
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <div className="h-px flex-1 bg-border" /> {t("or")}{" "}
-          <div className="h-px flex-1 bg-border" />
-        </div>
 
         <form onSubmit={submit} className="surface-card space-y-3 rounded-2xl p-5">
           {mode === "up" && (
