@@ -27,7 +27,7 @@ export function useAuth() {
   useEffect(() => {
     setDisplayName(null);
     if (!user) return;
-    const meta = user.user_metadata?.display_name as string | undefined;
+    const meta = user.user_metadata?.["display_name"] as string | undefined;
     if (meta) setDisplayName(meta);
     supabase
       .from("profiles")
