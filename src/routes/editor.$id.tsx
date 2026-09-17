@@ -428,6 +428,25 @@ function Editor() {
           }}
         />
       ) : null}
+
+      {showUnlock ? (
+        <UnlockSheet
+          titleText={fields.title}
+          onClose={() => setShowUnlock(false)}
+          onUnlock={(_plan, price) => {
+            markUnlocked(creationId);
+            setPaid(true);
+            setShowUnlock(false);
+            setStatus(
+              pick(
+                { en: `Unlocked for ₹${price} — making your video…`, te: `₹${price}కి అన్‌లాక్ — వీడియో తయారవుతోంది…` },
+                lang,
+              ),
+            );
+            void exportVideo();
+          }}
+        />
+      ) : null}
     </AppShell>
   );
 }
