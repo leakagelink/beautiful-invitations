@@ -317,9 +317,10 @@ function Editor() {
                 className="hidden"
                 onChange={(e) => {
                   const file = e.target.files?.[0];
+                  e.target.value = "";
                   if (!file) return;
                   const reader = new FileReader();
-                  reader.onload = () => setPhoto(String(reader.result));
+                  reader.onload = () => setCropSrc(String(reader.result));
                   reader.readAsDataURL(file);
                 }}
               />
@@ -330,6 +331,15 @@ function Editor() {
                 >
                   {t("addPhoto")}
                 </button>
+                {photo ? (
+                  <button
+                    onClick={() => setCropSrc(photo)}
+                    className="btn-ghost-line press flex h-11 flex-1 items-center justify-center gap-1.5 rounded-full text-sm font-semibold"
+                  >
+                    <Crop className="h-4 w-4" />
+                    {t("editPhoto")}
+                  </button>
+                ) : null}
                 {photo ? (
                   <button
                     onClick={() => setPhoto(null)}
