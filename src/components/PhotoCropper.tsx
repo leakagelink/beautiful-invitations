@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   Check,
   Crop,
@@ -182,8 +183,8 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
         : "border-border text-muted-foreground"
     }`;
 
-  return (
-    <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-background pb-20">
+  const ui = (
+    <div className="fixed inset-0 z-[100] flex flex-col overflow-hidden bg-background pb-20">
       <div className="flex items-center justify-between px-4 py-3">
         <button
           onClick={onCancel}
