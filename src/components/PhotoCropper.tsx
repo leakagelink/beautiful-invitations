@@ -288,7 +288,7 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
         </div>
       </div>
 
-      <div className="mx-auto max-h-[52vh] w-full max-w-[360px] shrink-0 overflow-y-auto px-4 pb-10 pt-1">
+      <div className="mx-auto max-h-[52vh] w-full max-w-[360px] shrink-0 overflow-y-auto px-4 pb-28 pt-1">
         {/* tabs */}
         <div className="mb-3 flex rounded-full border border-border p-1">
           <button
