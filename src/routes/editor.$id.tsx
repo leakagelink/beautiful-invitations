@@ -365,7 +365,7 @@ function Editor() {
                 </button>
                 {photo ? (
                   <button
-                    onClick={() => setCropSrc(photo)}
+                    onClick={() => openCrop(photo)}
                     className="btn-ghost-line press flex h-11 flex-1 items-center justify-center gap-1.5 rounded-full text-sm font-semibold"
                   >
                     <Crop className="h-4 w-4" />
@@ -446,10 +446,10 @@ function Editor() {
       {cropSrc ? (
         <PhotoCropper
           src={cropSrc}
-          onCancel={() => setCropSrc(null)}
+          onCancel={closeCrop}
           onApply={(cropped) => {
             setPhoto(cropped);
-            setCropSrc(null);
+            closeCrop();
           }}
         />
       ) : null}
