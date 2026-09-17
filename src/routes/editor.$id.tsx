@@ -40,6 +40,15 @@ export const Route = createFileRoute("/editor/$id")({
 
 type Tab = "text" | "photo" | "music";
 
+/** Character limits keep long names from breaking the design. */
+const LIMITS: Record<keyof InviteFields, number> = {
+  subtitle: 40,
+  title: 34,
+  date: 46,
+  message: 140,
+  footer: 60,
+};
+
 function Editor() {
   const { id } = Route.useParams();
   const { c } = Route.useSearch();
@@ -265,11 +274,23 @@ function Editor() {
                       className="mt-1 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary"
                     />
                   ) : (
-                    <input
-                      value={fields[key]}
-                      onChange={(e) => update(key)(e.target.value)}
-                      className="mt-1 h-11 w-full rounded-xl border border-input bg-background px-3 text-sm outline-none focus:border-primary"
-                    />
+                    <>
+                      <input
+                        value={fields[key]}
+                        maxLength={LIMITS[key]}
+                        onChange={(e) => update(key)(e.target.value.slice(0, LIMITS[key]))}
+                        className="mt-1 h-11 w-full rounded-xl border border-input bg-background px-3 text-sm outline-none focus:border-primary"
+                      />
+                      <span
+                        className={`mt-1 block text-right text-[11px] ${
+                          fields[key].length > LIMITS[key] - 6
+                            ? "text-primary"
+                            : "text-muted-foreground"
+                        }`}
+                      >
+                        {fields[key].length}/{LIMITS[key]}
+                      </span>
+                    </>
                   )}
                 </label>
               ))}
