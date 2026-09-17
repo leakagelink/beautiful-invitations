@@ -41,6 +41,14 @@ function Profile() {
           </div>
         </section>
 
+        <Link
+          to="/admin"
+          className="surface-card press flex items-center gap-3 rounded-2xl p-5 text-sm font-semibold"
+        >
+          <Wrench className="size-4 text-primary" />
+          {pick({ en: "Admin panel — add or delete templates", te: "అడ్మిన్ ప్యానెల్ — టెంప్లేట్లు జోడించు / తొలగించు" }, lang)}
+        </Link>
+
         {[
           {
             icon: ShieldCheck,
