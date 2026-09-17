@@ -100,6 +100,9 @@ function Editor() {
     setFields(lang === "te" ? template.fieldsTe : template.fields);
   }, [c, template, lang]);
 
+  useEffect(() => setPaid(isUnlocked(creationId)), [creationId]);
+
+
   const labels = useMemo(
     () => ({
       subtitle: { en: "Top line", te: "పైవరుస" },
