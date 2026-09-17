@@ -35,7 +35,7 @@ export function useAuth() {
       .eq("id", user.id)
       .maybeSingle()
       .then(({ data }) => {
-        if (data?.display_name) setDisplayName(data.display_name);
+        if (data?.["display_name"]) setDisplayName(data["display_name"] as string);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);

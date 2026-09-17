@@ -1,13 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { FileText, Globe2, HeartHandshake, Headset, Info, LogOut, ShieldCheck, Wrench } from "lucide-react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { FileText, Globe2, HeartHandshake, Headset, Info, LogIn, LogOut, ShieldCheck, User as UserIcon, Wrench } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { pick, useLang } from "@/lib/i18n";
+import { useAuth } from "@/lib/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
     meta: [
       { title: "Profile & settings — My Invitation" },
-{ property: "og:title", content: "Profile & settings — My Invitation" },
+      { property: "og:title", content: "Profile & settings — My Invitation" },
       { property: "og:description", content: "Language and app settings for My Invitation." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -18,10 +20,46 @@ export const Route = createFileRoute("/profile")({
 
 function Profile() {
   const { lang, setLang, t } = useLang();
+  const { user, displayName, loading } = useAuth();
+  const navigate = useNavigate();
+
+  async function logout() {
+    await supabase.auth.signOut();
+    navigate({ to: "/profile" });
+  }
 
   return (
     <AppShell title={t("profile")} back="/">
       <main className="space-y-4 px-4 pt-4">
+        <section className="surface-card rounded-2xl p-5">
+          <div className="flex items-center gap-2 text-sm font-semibold">
+            <UserIcon className="size-4 text-primary" /> {t("account")}
+          </div>
+          {loading ? (
+            <p className="mt-3 text-sm text-muted-foreground">…</p>
+          ) : user ? (
+            <div className="mt-3 flex items-center gap-3">
+              <div className="btn-gold flex size-11 items-center justify-center rounded-full text-base font-bold">
+                {(displayName ?? user.email ?? "?").slice(0, 1).toUpperCase()}
+              </div>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-bold">{displayName ?? "—"}</p>
+                <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-3">
+              <p className="text-sm text-muted-foreground">{t("notSignedIn")}</p>
+              <Link
+                to="/auth"
+                className="btn-gold press mt-3 flex h-12 items-center justify-center gap-2 rounded-xl text-sm font-bold"
+              >
+                <LogIn className="size-4" /> {t("signIn")} / {t("signUp")}
+              </Link>
+            </div>
+          )}
+        </section>
+
         <section className="surface-card rounded-2xl p-5">
           <div className="flex items-center gap-2 text-sm font-semibold">
             <Globe2 className="size-4 text-primary" /> {t("language")}
@@ -70,14 +108,22 @@ function Profile() {
           </Link>
         </div>
 
-        <button
-          type="button"
-          disabled
-          title={t("comingSoon")}
-          className="flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-2xl border border-border bg-card p-4 text-sm font-semibold text-muted-foreground opacity-70"
-        >
-          <LogOut className="size-4" /> {t("logout")} · {t("comingSoon")}
-        </button>
+        {user ? (
+          <button
+            type="button"
+            onClick={logout}
+            className="press flex w-full items-center justify-center gap-2 rounded-2xl border border-destructive/40 bg-destructive/10 p-4 text-sm font-semibold text-destructive"
+          >
+            <LogOut className="size-4" /> {t("logout")}
+          </button>
+        ) : (
+          <Link
+            to="/auth"
+            className="press flex w-full items-center justify-center gap-2 rounded-2xl border border-border bg-card p-4 text-sm font-semibold"
+          >
+            <LogIn className="size-4" /> {t("signIn")} / {t("signUp")}
+          </Link>
+        )}
 
         {[
           {
