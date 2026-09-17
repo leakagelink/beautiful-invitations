@@ -205,7 +205,11 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
         </button>
       </div>
 
-      <div ref={areaRef} className="relative mx-auto w-full max-w-[360px] flex-1 px-4 py-2">
+      <div
+        ref={areaRef}
+        className="relative mx-auto min-h-0 w-full max-w-[360px] flex-1 px-4 py-2"
+      >
+
         <div
           className="absolute left-1/2 top-1/2 touch-none overflow-hidden rounded-2xl border border-border bg-black"
           style={{
