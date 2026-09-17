@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Download, Music2, Share2, Type as TypeIcon, ImagePlus, Video } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { InvitePreview } from "@/components/InvitePreview";
+import { PhotoCropper } from "@/components/PhotoCropper";
 import { saveCreation, getCreation, type InviteFields } from "@/lib/creations";
 import { pick, useLang } from "@/lib/i18n";
 import { CANVAS_H, CANVAS_W, drawInvite, ensureFonts, loadImage } from "@/lib/render";

@@ -97,7 +97,10 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
         >
           <X className="h-5 w-5" />
         </button>
-        <p className="text-sm font-semibold">{t("cropTitle")}</p>
+        <div className="text-center">
+          <p className="text-sm font-semibold">{t("cropTitle")}</p>
+          <p className="text-[11px] text-muted-foreground">{t("cropHint")}</p>
+        </div>
         <button
           onClick={apply}
           aria-label={t("applyCrop")}
