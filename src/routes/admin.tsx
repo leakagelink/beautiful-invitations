@@ -11,6 +11,7 @@ import {
   toBackgroundDataUrl,
   type CustomTemplate,
 } from "@/lib/customTemplates";
+import { PricingAdmin } from "@/components/PricingAdmin";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -303,6 +304,8 @@ function AdminPanel() {
             </ul>
           )}
         </section>
+
+        <PricingAdmin />
       </main>
     </AppShell>
   );

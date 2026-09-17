@@ -11,6 +11,8 @@ import { templateById } from "@/lib/templates";
 import { useTemplate } from "@/hooks/useTemplates";
 import { isCustomId } from "@/lib/customTemplates";
 import { downloadBlob, renderVideo, shareFile } from "@/lib/video";
+import { UnlockSheet } from "@/components/UnlockSheet";
+import { isUnlocked, markUnlocked } from "@/lib/pricing";
 
 export const Route = createFileRoute("/editor/$id")({
   validateSearch: (search: Record<string, unknown>): { c?: string } =>
@@ -75,6 +77,8 @@ function Editor() {
   const [status, setStatus] = useState<string | null>(null);
   const [video, setVideo] = useState<{ url: string; blob: Blob; ext: string } | null>(null);
   const [creationId] = useState(() => c ?? `inv_${Date.now().toString(36)}`);
+  const [showUnlock, setShowUnlock] = useState(false);
+  const [paid, setPaid] = useState(false);
   const photoInput = useRef<HTMLInputElement | null>(null);
   const musicInput = useRef<HTMLInputElement | null>(null);
 
@@ -95,6 +99,9 @@ function Editor() {
     seeded.current = true;
     setFields(lang === "te" ? template.fieldsTe : template.fields);
   }, [c, template, lang]);
+
+  useEffect(() => setPaid(isUnlocked(creationId)), [creationId]);
+
 
   const labels = useMemo(
     () => ({
@@ -177,7 +184,7 @@ function Editor() {
 
         <div className="mt-4 grid grid-cols-2 gap-2">
           <button
-            onClick={exportVideo}
+            onClick={() => (paid ? exportVideo() : setShowUnlock(true))}
             disabled={busy !== null}
             className="btn-gold sheen press flex h-12 items-center justify-center gap-2 rounded-full text-sm disabled:opacity-60"
           >
@@ -418,6 +425,25 @@ function Editor() {
           onApply={(cropped) => {
             setPhoto(cropped);
             setCropSrc(null);
+          }}
+        />
+      ) : null}
+
+      {showUnlock ? (
+        <UnlockSheet
+          titleText={fields.title}
+          onClose={() => setShowUnlock(false)}
+          onUnlock={(_plan, price) => {
+            markUnlocked(creationId);
+            setPaid(true);
+            setShowUnlock(false);
+            setStatus(
+              pick(
+                { en: `Unlocked for ₹${price} — making your video…`, te: `₹${price}కి అన్‌లాక్ — వీడియో తయారవుతోంది…` },
+                lang,
+              ),
+            );
+            void exportVideo();
           }}
         />
       ) : null}
