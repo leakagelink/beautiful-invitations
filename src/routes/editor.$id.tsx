@@ -11,6 +11,8 @@ import { templateById } from "@/lib/templates";
 import { useTemplate } from "@/hooks/useTemplates";
 import { isCustomId } from "@/lib/customTemplates";
 import { downloadBlob, renderVideo, shareFile } from "@/lib/video";
+import { UnlockSheet } from "@/components/UnlockSheet";
+import { isUnlocked, markUnlocked } from "@/lib/pricing";
 
 export const Route = createFileRoute("/editor/$id")({
   validateSearch: (search: Record<string, unknown>): { c?: string } =>
