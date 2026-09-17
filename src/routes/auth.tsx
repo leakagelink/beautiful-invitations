@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Chrome, Lock, Mail, User as UserIcon } from "lucide-react";
+import { Lock, Mail, User as UserIcon } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { useLang } from "@/lib/i18n";
 import { supabase } from "@/integrations/supabase/client";
