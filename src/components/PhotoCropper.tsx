@@ -434,4 +434,8 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
       </div>
     </div>
   );
+
+  // Portal to <body> so the app header never blocks the cropper's buttons.
+  if (typeof document === "undefined") return null;
+  return createPortal(ui, document.body);
 }
