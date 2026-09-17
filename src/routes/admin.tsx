@@ -304,6 +304,8 @@ function AdminPanel() {
             </ul>
           )}
         </section>
+
+        <PricingAdmin />
       </main>
     </AppShell>
   );
