@@ -1,8 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Download, Music2, Share2, Type as TypeIcon, ImagePlus, Video } from "lucide-react";
+import { Crop, Download, Music2, Share2, Type as TypeIcon, ImagePlus, Video } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { InvitePreview } from "@/components/InvitePreview";
+import { PhotoCropper } from "@/components/PhotoCropper";
 import { saveCreation, getCreation, type InviteFields } from "@/lib/creations";
 import { pick, useLang } from "@/lib/i18n";
 import { CANVAS_H, CANVAS_W, drawInvite, ensureFonts, loadImage } from "@/lib/render";
@@ -65,6 +66,7 @@ function Editor() {
     },
   );
   const [photo, setPhoto] = useState<string | null>(null);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
   const [musicUrl, setMusicUrl] = useState<string | null>(null);
   const [musicName, setMusicName] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>("text");
@@ -315,9 +317,10 @@ function Editor() {
                 className="hidden"
                 onChange={(e) => {
                   const file = e.target.files?.[0];
+                  e.target.value = "";
                   if (!file) return;
                   const reader = new FileReader();
-                  reader.onload = () => setPhoto(String(reader.result));
+                  reader.onload = () => setCropSrc(String(reader.result));
                   reader.readAsDataURL(file);
                 }}
               />
@@ -328,6 +331,15 @@ function Editor() {
                 >
                   {t("addPhoto")}
                 </button>
+                {photo ? (
+                  <button
+                    onClick={() => setCropSrc(photo)}
+                    className="btn-ghost-line press flex h-11 flex-1 items-center justify-center gap-1.5 rounded-full text-sm font-semibold"
+                  >
+                    <Crop className="h-4 w-4" />
+                    {t("editPhoto")}
+                  </button>
+                ) : null}
                 {photo ? (
                   <button
                     onClick={() => setPhoto(null)}
@@ -398,6 +410,17 @@ function Editor() {
           {t("creations")} →
         </Link>
       </main>
+
+      {cropSrc ? (
+        <PhotoCropper
+          src={cropSrc}
+          onCancel={() => setCropSrc(null)}
+          onApply={(cropped) => {
+            setPhoto(cropped);
+            setCropSrc(null);
+          }}
+        />
+      ) : null}
     </AppShell>
   );
 }
