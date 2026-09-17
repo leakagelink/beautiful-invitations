@@ -183,7 +183,7 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
     }`;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-background/95 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-background">
       <div className="flex items-center justify-between px-4 py-3">
         <button
           onClick={onCancel}
