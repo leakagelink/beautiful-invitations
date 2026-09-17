@@ -59,14 +59,6 @@ function AuthPage() {
     }
   }
 
-  async function google() {
-    setError(null);
-    const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
-    });
-    if (result.error) setError(result.error.message ?? String(result.error));
-  }
-
   return (
     <AppShell title={mode === "up" ? t("signUp") : t("signIn")} back="/profile">
       <main className="space-y-4 px-4 pt-4">
