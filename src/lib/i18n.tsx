@@ -43,6 +43,11 @@ export const strings: Dict = {
   share: { en: "Share", te: "షేర్ చేయండి" },
   shareWhatsapp: { en: "Share on WhatsApp", te: "వాట్సాప్‌లో షేర్" },
   comingSoon: { en: "Coming soon", te: "త్వరలో వస్తోంది" },
+  privacy: { en: "Privacy policy", te: "గోప్యతా విధానం" },
+  terms: { en: "Terms of service", te: "సేవా నిబంధనలు" },
+  contact: { en: "Contact us", te: "మమ్మల్ని సంప్రదించండి" },
+  support: { en: "Support", te: "సపోర్ట్" },
+  logout: { en: "Log out", te: "లాగ్ అవుట్" },
   download: { en: "Download", te: "డౌన్‌లోడ్" },
   noCreations: { en: "No invitations yet", te: "ఇంకా ఆహ్వానాలు లేవు" },
   noCreationsSub: {
