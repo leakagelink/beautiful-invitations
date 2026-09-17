@@ -73,19 +73,6 @@ function AuthPage() {
       <main className="space-y-4 px-4 pt-4">
         <p className="text-sm text-muted-foreground">{t("signInSub")}</p>
 
-        <button
-          type="button"
-          onClick={google}
-          className="btn-ghost-line press flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold"
-        >
-          <Chrome className="size-4" /> {t("continueGoogle")}
-        </button>
-
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <div className="h-px flex-1 bg-border" /> {t("or")}{" "}
-          <div className="h-px flex-1 bg-border" />
-        </div>
-
         <form onSubmit={submit} className="surface-card space-y-3 rounded-2xl p-5">
           {mode === "up" && (
             <label className="block">
