@@ -217,7 +217,9 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
             (e.target as HTMLElement).setPointerCapture(e.pointerId);
             pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
             if (pointers.current.size === 2) {
-              const [a, b] = [...pointers.current.values()];
+              const pts = [...pointers.current.values()];
+              const a = pts[0]!;
+              const b = pts[1]!;
               pinchRef.current = {
                 dist: Math.hypot(a.x - b.x, a.y - b.y) || 1,
                 zoom,
@@ -233,11 +235,14 @@ export function PhotoCropper({ src, onApply, onCancel }: Props) {
             }
             const pinch = pinchRef.current;
             if (pinch && pointers.current.size >= 2) {
-              const [a, b] = [...pointers.current.values()];
+              const pts = [...pointers.current.values()];
+              const a = pts[0]!;
+              const b = pts[1]!;
               const d = Math.hypot(a.x - b.x, a.y - b.y) || 1;
               changeZoom(pinch.zoom * (d / pinch.dist));
               return;
             }
+
             const d = dragRef.current;
             if (!d) return;
             setOffset(
