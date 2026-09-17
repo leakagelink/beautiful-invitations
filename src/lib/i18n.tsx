@@ -75,13 +75,28 @@ export const strings: Dict = {
   },
   editPhoto: { en: "Crop / zoom", te: "క్రాప్ / జూమ్" },
   cropTitle: { en: "Adjust photo", te: "ఫోటో సరిచేయండి" },
-  cropHint: { en: "Drag to move • slider to zoom", te: "కదపడానికి లాగండి • జూమ్ కొరకు స్లైడర్" },
+  cropHint: {
+    en: "Drag to move • pinch or slider to zoom",
+    te: "కదపడానికి లాగండి • జూమ్ కొరకు పించ్ లేదా స్లైడర్",
+  },
   zoom: { en: "Zoom", te: "జూమ్" },
   zoomIn: { en: "Zoom in", te: "జూమ్ ఇన్" },
   zoomOut: { en: "Zoom out", te: "జూమ్ అవుట్" },
   applyCrop: { en: "Apply", te: "వర్తింపజేయి" },
   cancelCrop: { en: "Cancel", te: "రద్దు" },
+  tabCrop: { en: "Crop", te: "క్రాప్" },
+  tabZoom: { en: "Zoom", te: "జూమ్" },
+  cropShape: { en: "Crop size", te: "క్రాప్ సైజు" },
+  ratioOriginal: { en: "Original", te: "ఒరిజినల్" },
+  ratioCustom: { en: "Custom", te: "కస్టమ్" },
+  customW: { en: "Width", te: "వెడల్పు" },
+  customH: { en: "Height", te: "ఎత్తు" },
+  rotateLeft: { en: "Rotate left", te: "ఎడమకు తిప్పు" },
+  rotateRight: { en: "Rotate right", te: "కుడికి తిప్పు" },
+  flipPhoto: { en: "Flip", te: "ఫ్లిప్" },
+  resetPhoto: { en: "Reset", te: "రీసెట్" },
 };
+
 
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (k: keyof typeof strings) => string };
 const LangContext = createContext<Ctx>({
