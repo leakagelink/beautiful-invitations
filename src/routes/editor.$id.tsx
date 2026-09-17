@@ -69,6 +69,22 @@ function Editor() {
   );
   const [photo, setPhoto] = useState<string | null>(null);
   const [cropSrc, setCropSrc] = useState<string | null>(null);
+  const openCrop = useCallback((src: string) => {
+    window.history.pushState({ ...(window.history.state ?? {}), crop: true }, "");
+    setCropSrc(src);
+  }, []);
+  const closeCrop = useCallback(() => {
+    setCropSrc(null);
+    if ((window.history.state as { crop?: boolean } | null)?.crop) {
+      window.history.back();
+    }
+  }, []);
+  // Phone/browser back should close the cropper, not leave the editor.
+  useEffect(() => {
+    const onPop = () => setCropSrc(null);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
   const [musicUrl, setMusicUrl] = useState<string | null>(null);
   const [musicName, setMusicName] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>("text");
