@@ -4,7 +4,8 @@ import { Search as SearchIcon } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { TemplateCard } from "@/components/TemplateCard";
 import { useLang } from "@/lib/i18n";
-import { occasions, templates } from "@/lib/templates";
+import { occasions } from "@/lib/templates";
+import { useTemplates } from "@/hooks/useTemplates";
 
 export const Route = createFileRoute("/search")({
   head: () => ({

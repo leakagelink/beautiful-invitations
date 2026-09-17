@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
 import { TemplateCard } from "@/components/TemplateCard";
 import { pick, useLang } from "@/lib/i18n";
-import { occasions, templatesFor } from "@/lib/templates";
+import { occasions } from "@/lib/templates";
+import { useTemplates } from "@/hooks/useTemplates";
 
 export const Route = createFileRoute("/occasions/$slug")({
   head: ({ params }) => {
@@ -32,7 +33,7 @@ function OccasionPage() {
   const { slug } = Route.useParams();
   const { lang, t } = useLang();
   const occasion = occasions.find((o) => o.slug === slug);
-  const list = templatesFor(slug);
+  const list = useTemplates(slug);
 
   return (
     <AppShell title={occasion ? pick(occasion.name, lang) : slug} back="/">

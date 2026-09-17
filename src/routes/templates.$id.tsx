@@ -4,7 +4,9 @@ import { AppShell } from "@/components/AppShell";
 import { InvitePreview } from "@/components/InvitePreview";
 import { TemplateCard } from "@/components/TemplateCard";
 import { pick, useLang } from "@/lib/i18n";
-import { templateById, templatesFor } from "@/lib/templates";
+import { templateById } from "@/lib/templates";
+import { useTemplate, useTemplates } from "@/hooks/useTemplates";
+import { isCustomId } from "@/lib/customTemplates";
 
 export const Route = createFileRoute("/templates/$id")({
   head: ({ params }) => {
@@ -25,7 +27,7 @@ export const Route = createFileRoute("/templates/$id")({
     };
   },
   loader: ({ params }) => {
-    if (!templateById(params.id)) throw notFound();
+    if (!isCustomId(params.id) && !templateById(params.id)) throw notFound();
     return null;
   },
   component: TemplateDetail,
@@ -34,11 +36,12 @@ export const Route = createFileRoute("/templates/$id")({
 function TemplateDetail() {
   const { id } = Route.useParams();
   const { lang, t } = useLang();
-  const template = templateById(id);
+  const template = useTemplate(id);
+  const siblings = useTemplates(template?.occasion);
   if (!template) return null;
 
   const fields = lang === "te" ? template.fieldsTe : template.fields;
-  const related = templatesFor(template.occasion).filter((x) => x.id !== template.id);
+  const related = siblings.filter((x) => x.id !== template.id);
 
   return (
     <AppShell title={pick(template.name, lang)} back="/">
