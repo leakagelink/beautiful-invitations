@@ -184,7 +184,7 @@ function Editor() {
 
         <div className="mt-4 grid grid-cols-2 gap-2">
           <button
-            onClick={exportVideo}
+            onClick={() => (paid ? exportVideo() : setShowUnlock(true))}
             disabled={busy !== null}
             className="btn-gold sheen press flex h-12 items-center justify-center gap-2 rounded-full text-sm disabled:opacity-60"
           >
