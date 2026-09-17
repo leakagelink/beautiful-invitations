@@ -410,6 +410,17 @@ function Editor() {
           {t("creations")} →
         </Link>
       </main>
+
+      {cropSrc ? (
+        <PhotoCropper
+          src={cropSrc}
+          onCancel={() => setCropSrc(null)}
+          onApply={(cropped) => {
+            setPhoto(cropped);
+            setCropSrc(null);
+          }}
+        />
+      ) : null}
     </AppShell>
   );
 }
